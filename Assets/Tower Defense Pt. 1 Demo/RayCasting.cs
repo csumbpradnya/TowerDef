@@ -7,15 +7,18 @@ using UnityEngine.UI;
 public class RayCasting : MonoBehaviour
 {
     public int health = 3;
-    public int coins = 5;
+    public int coins = 3;
     
     public TMP_Text coinUI;
 
     public Slider slider;
 
+    public AudioSource audioSrc;
+    public AudioClip boing;
     private void Start()
     {
         coinUI.SetText("coins: " + coins);
+        audioSrc = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -35,6 +38,8 @@ public class RayCasting : MonoBehaviour
                     // check for health
                     if (health < 0)
                     {
+                        audioSrc.clip = boing;
+                        audioSrc.Play();
                         coins += 1;
                         Destroy(hitInfo.collider.gameObject);
                         coinUI.SetText("coins: " + coins);

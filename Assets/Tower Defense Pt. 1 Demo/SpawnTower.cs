@@ -30,7 +30,6 @@ public class SpawnTower : MonoBehaviour
                     coins.coinUI.SetText("coins: " + coins.coins);
                     Debug.Log("Cost of Tower = $1");
                 }
-
             }
         }
     }

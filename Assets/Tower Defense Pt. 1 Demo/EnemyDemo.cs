@@ -13,12 +13,9 @@ public class EnemyDemo : MonoBehaviour
     private int targetWaypointIndex;
 
     public Animator animator;
-    
-    //   waypoints
-    //   delegate event for outside code to subscribe and be notified of enemy death
-    public delegate void EnemyDied(EnemyDemo deadEnemy);
 
-    public event EnemyDied onEnemyDied;
+    
+    
     
 
     // NOTE! This code should work for any speed value (large or small)
@@ -31,7 +28,6 @@ public class EnemyDemo : MonoBehaviour
         transform.position = waypointList[0].transform.position;
         targetWaypointIndex = 1;
         animator = GetComponent<Animator>();
-        
     }
 
     //-----------------------------------------------------------------------------
@@ -51,6 +47,11 @@ public class EnemyDemo : MonoBehaviour
         if (transform.position == waypointList[targetWaypointIndex].transform.position && targetWaypointIndex<6)
         {
             targetWaypointIndex++;
+        }
+        
+        if (!(targetWaypointIndex < 6) && transform.position == waypointList[targetWaypointIndex].transform.position)
+        {
+            speed = 1;
         }
 
         animator.SetFloat("speed", speed);
