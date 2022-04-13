@@ -10,10 +10,14 @@ public class CandyHealth : MonoBehaviour
     private EnemyDemo enemy;
     private float health = 6f;
     public Slider candyHealth;
+
+    private GameObject finalCandy;
     // Start is called before the first frame update
     void Start()
     {
+        finalCandy = GameObject.Find("Chocolate (6)");
         enemy = GameObject.Find("player1").GetComponent<EnemyDemo>();
+        Debug.Log(finalCandy);
     }
 
     // Update is called once per frame
@@ -25,9 +29,9 @@ public class CandyHealth : MonoBehaviour
             candyHealth.value = health;
         }
 
-        if (health == 0)
+        if (candyHealth.value == 0)
         {
-            Destroy(gameObject);
+            Destroy(finalCandy);
             SceneManager.LoadScene("Restart");
         }
     }
